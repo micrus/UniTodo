@@ -8,6 +8,7 @@ import Login from './containers/Auth/Login/Login';
 import SignUp from './containers/Auth/SignUp/SignUp';
 import Todos from './containers/Todos/Todos';
 import Logout from './containers/Auth/Logout/Logout';
+import RecoverPassword from './containers/Auth/RecoverPassword/RecoverPassword';
 
 const App = (loggedIn, emailVerified) => {
   let routes;
@@ -34,6 +35,7 @@ const App = (loggedIn, emailVerified) => {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/recover" component={RecoverPassword} />
         <Redirect to="/login" />
       </Switch>
     );

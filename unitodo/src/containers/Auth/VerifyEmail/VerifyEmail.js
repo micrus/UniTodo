@@ -34,7 +34,7 @@ export const VerifyEmail = ({ sendVerification, error, loading, cleanUp}) => {
   return (
     <FormWrapper>
       <Wrapper>
-        <Heading color="white" size="h1">
+        <Heading noMargin color="white" size="h1">
           Verify your email
         </Heading>
         <Heading color="white" bold size="h4">
