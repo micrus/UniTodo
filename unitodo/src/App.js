@@ -2,16 +2,27 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+import VerifyEmail from './containers/Auth/VerifyEmail/VerifyEmail'
 import Layout from './hoc/layout/Layout';
 import Login from './containers/Auth/Login/Login';
 import SignUp from './containers/Auth/SignUp/SignUp';
 import Todos from './containers/Todos/Todos';
 import Logout from './containers/Auth/Logout/Logout';
-const App = (loggedIn) => {
+
+const App = (loggedIn, emailVerified) => {
   let routes;
-  if (loggedIn.loggedIn) {
+
+  if (loggedIn.loggedIn && !emailVerified.emailVerified) {
     routes = (
-      
+      <Switch>
+        <Route exact path='/verify-email' component={VerifyEmail} />
+        <Route exact path='/logout' component={Logout} />
+        <Redirect to="/verify-email" />
+      </Switch>
+    )
+
+  } else if (loggedIn.loggedIn && emailVerified.emailVerified) {
+    routes = (      
       <Switch>
         <Route exact path="/" component={Todos} />
         <Route exact path="/logout" component={Logout} />
@@ -39,7 +50,8 @@ const App = (loggedIn) => {
 };
 
 const mapStateToProps = ({firebase}) => ({
-  loggedIn : firebase.auth.uid ? true:null,
+  loggedIn : firebase.auth.uid,
+  emailVerified: firebase.auth.emailVerified
 })
 
 export default connect(mapStateToProps)(App);

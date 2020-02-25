@@ -40,8 +40,7 @@ const Login = ({loading, error, login, cleanUp}) => {
       }}
       validationSchema={LoginSchema}
       onSubmit={async(values, { setSubmitting }) => {
-        await login(values);
-        setSubmitting(false);
+        await login(values).then(setSubmitting(true));
       }}
     >
       {({ isSubmitting, isValid }) => (
