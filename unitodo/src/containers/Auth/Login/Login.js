@@ -10,6 +10,7 @@ import Input from "../../../components/UI/Forms/Input/Input";
 import Button from "../../../components/UI/Forms/Button/Button";
 import Heading from "../../../components/UI/Headings/Heading";
 import Message from "../../../components/UI/Message/Message";
+import CustomLink from '../../../components/UI/CustomLink/CustomLink';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -71,6 +72,9 @@ const Login = ({ loading, error, login, cleanUp }) => {
             >
               Log in
             </Button>
+            <CustomLink link="/recover" color="white">
+              Forgot your password?
+            </CustomLink>
             <MessageWrapper>
               <Message error show={error}>
                 {error}
