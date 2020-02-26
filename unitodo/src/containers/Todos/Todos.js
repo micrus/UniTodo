@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { compose } from "redux";
-import { connect } from "react-redux";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { firestoreConnect } from 'react-redux-firebase';
 
-import Heading from "../../components/UI/Headings/Heading";
-import { Container } from "../../hoc/layout/elements";
-import AddTodo from "./AddTodo/AddTodo";
-import Loader from "../../components/UI/Loader/Loader";
-import Todo from "./Todo/Todo";
+import Heading from '../../components/UI/Headings/Heading';
+import { Container } from '../../hoc/layout/elements';
+import InputTodo from './InputTodo/InputTodo';
+import Button from '../../components/UI/Forms/Button/Button';
+import Loader from '../../components/UI/Loader/Loader';
+import Todo from './Todo/Todo';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -34,7 +35,8 @@ const Content = styled.div`
   margin-top: 2rem;
 `;
 
-const Todos = ({ todos, requesting, requested, userId }) => {
+const Todos = ({ todos, requested, userId }) => {
+  const [isAdding, setIsAdding] = useState(false);
   let content;
   if (!todos) {
     content = (
@@ -42,23 +44,30 @@ const Todos = ({ todos, requesting, requested, userId }) => {
         <Loader isWhite />
       </Content>
     );
-  } else if (!todos[userId] && requested[`todos/${userId}`]) {
+  } else if (
+    (!todos[userId] && requested[`todos/${userId}`]) ||
+    todos[userId].todos.length === 0
+  ) {
     content = (
       <Content>
         <Heading color="white" size="h2">
-          Non hai alcun todo!
+          You have no todos!
         </Heading>
       </Content>
     );
   } else {
     content = (
       <Content>
-        {todos[userId].todos.map(todo => (
-          <Todo key={todo.id} todo={todo} />
-        ))}
+        {todos[userId].todos
+          .slice(0)
+          .reverse()
+          .map(todo => (
+            <Todo key={todo.id} todo={todo} />
+          ))}
       </Content>
     );
   }
+
   return (
     <Wrapper>
       <Container>
@@ -67,9 +76,12 @@ const Todos = ({ todos, requesting, requested, userId }) => {
             Your Todos
           </Heading>
           <Heading bold size="h4" color="white">
-            Tutto quello che devi fare per adesso...
+            All you have to do for now...
           </Heading>
-          <AddTodo />
+          <Button color="main" contain onClick={() => setIsAdding(true)}>
+            Add Todo
+          </Button>
+          <InputTodo opened={isAdding} close={() => setIsAdding(false)} />
           {content}
         </InnerWrapper>
       </Container>
@@ -81,12 +93,15 @@ const mapStateToProps = ({ firebase, firestore }) => ({
   userId: firebase.auth.uid,
   todos: firestore.data.todos,
   requesting: firestore.status.requesting,
-  requested: firestore.status.requested
+  requested: firestore.status.requested,
 });
 
 const mapDispatchToProps = {};
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
   firestoreConnect(props => [`todos/${props.userId}`])
 )(Todos);
