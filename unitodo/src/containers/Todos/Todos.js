@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
-import { firestoreConnect } from 'react-redux-firebase';
+import React, { useState } from "react";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import styled from "styled-components";
+import { firestoreConnect } from "react-redux-firebase";
 
-import Heading from '../../components/UI/Headings/Heading';
-import { Container } from '../../hoc/layout/elements';
-import InputTodo from './InputTodo/InputTodo';
-import Button from '../../components/UI/Forms/Button/Button';
-import Loader from '../../components/UI/Loader/Loader';
-import Todo from './Todo/Todo';
+import Heading from "../../components/UI/Headings/Heading";
+import { Container } from "../../hoc/layout/elements";
+import InputTodo from "./InputTodo/InputTodo";
+import Button from "../../components/UI/Forms/Button/Button";
+import Loader from "../../components/UI/Loader/Loader";
+import Todo from "./Todo/Todo";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -44,10 +44,15 @@ const Todos = ({ todos, requested, userId }) => {
         <Loader isWhite />
       </Content>
     );
-  } else if (
-    (!todos[userId] && requested[`todos/${userId}`]) ||
-    todos[userId].todos.length === 0
-  ) {
+  } else if (!todos[userId] || !todos[userId].todos) {
+    content = (
+      <Content>
+        <Heading color="white" size="h2">
+          You have no todos!
+        </Heading>
+      </Content>
+    );
+  } else if (todos[userId].todos.length === 0) {
     content = (
       <Content>
         <Heading color="white" size="h2">
@@ -93,15 +98,12 @@ const mapStateToProps = ({ firebase, firestore }) => ({
   userId: firebase.auth.uid,
   todos: firestore.data.todos,
   requesting: firestore.status.requesting,
-  requested: firestore.status.requested,
+  requested: firestore.status.requested
 });
 
 const mapDispatchToProps = {};
 
 export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => [`todos/${props.userId}`])
 )(Todos);

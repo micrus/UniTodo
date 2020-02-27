@@ -1,29 +1,34 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+import { connect } from "react-redux";
 
-import VerifyEmail from './containers/Auth/VerifyEmail/VerifyEmail'
-import Layout from './hoc/layout/Layout';
-import Login from './containers/Auth/Login/Login';
-import SignUp from './containers/Auth/SignUp/SignUp';
-import Todos from './containers/Todos/Todos';
-import Logout from './containers/Auth/Logout/Logout';
-import RecoverPassword from './containers/Auth/RecoverPassword/RecoverPassword';
-import Profile from './containers/Auth/Profile/Profile';
+import VerifyEmail from "./containers/Auth/VerifyEmail/VerifyEmail";
+import Layout from "./hoc/layout/Layout";
+import Login from "./containers/Auth/Login/Login";
+import SignUp from "./containers/Auth/SignUp/SignUp";
+import Logout from "./containers/Auth/Logout/Logout";
+import RecoverPassword from "./containers/Auth/RecoverPassword/RecoverPassword";
+import Profile from "./containers/Auth/Profile/Profile";
+import Todos from "./containers/Todos/Todos";
 
-const App = ({loggedIn, emailVerified}) => {
+const App = ({ loggedIn, emailVerified }) => {
   let routes;
   if (loggedIn && !emailVerified) {
     routes = (
-      <Switch>
-        <Route exact path='/verify-email' component={VerifyEmail} />
-        <Route exact path='/logout' component={Logout} />
-        <Redirect to="/verify-email" />
-      </Switch>
-    )
-
+        <Switch>
+          <Route exact path="/verify-email" component={VerifyEmail} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/logout" component={Logout} />
+          <Redirect to="/verify-email" />
+        </Switch>
+    );
   } else if (loggedIn && emailVerified) {
-    routes = (      
+    routes = (
       <Switch>
         <Route exact path="/" component={Todos} />
         <Route exact path="/profile" component={Profile} />
@@ -42,12 +47,9 @@ const App = ({loggedIn, emailVerified}) => {
     );
   }
 
-
   return (
     <Router>
-    <Layout>
-      {routes}
-    </Layout>
+      <Layout>{routes}</Layout>
     </Router>
   );
 };
