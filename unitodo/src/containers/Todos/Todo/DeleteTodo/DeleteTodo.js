@@ -49,7 +49,7 @@ const DeleteTodo = ({ show, close, todo, deleteTodo, error, loading }) => {
         >
           Delete
         </Button>
-        <Button color="main" contain onClick={close}>
+        <Button contain onClick={close}>
           Cancel
         </Button>
       </ButtonsWrapper>

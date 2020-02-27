@@ -1,10 +1,11 @@
   
 const theme = {
   colors: {
-    main: '#003459',
-    mainDark: '#21283e',
-    mainLight: '#2c3247',
-    mainLighter: '#2f82b8',
+    main: '#0c7b93',
+    mainDark: '#142850',
+    mainLight: '#27496d',
+    mainLighter: '#00a8cc',
+    background: '#beebe9',
     textColor: '#333',
     whiteColor: '#fff',
     errorRed: '#ff5757',

@@ -83,7 +83,7 @@ const InputTodo = ({
               <ButtonsWrapper>
                 <Button
                   contain
-                  color="main"
+                  
                   type="submit"
                   disabled={!isValid || isSubmitting}
                   loading={loading ? loadingText : null}
@@ -92,7 +92,7 @@ const InputTodo = ({
                 </Button>
                 <Button
                   type="button"
-                  color="main"
+                
                   contain
                   onClick={() => {
                     close();

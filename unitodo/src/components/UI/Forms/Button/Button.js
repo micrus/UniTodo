@@ -13,7 +13,7 @@ const StyledButton = styled.button`
   background-color: ${({ color }) => {
     if (color === 'red') return 'var(--color-errorRed)';
     else if (color === 'main') return 'var(--color-mainDark)';
-    else return 'var(--color-mainLighter)';
+    else return 'var(--color-main)';
   }};
   margin: 1.5rem 0 2rem 0;
   border: none;

@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   align-self: flex-start;
   height: 100%;
   min-height: calc(100vh - 6rem);
-  background-color: var(--color-mainLight);
+  background-color: var(--color-background);
 `;
 
 const InnerWrapper = styled.div`
@@ -47,7 +47,7 @@ const Todos = ({ todos, requested, userId }) => {
   } else if (!todos[userId] || !todos[userId].todos) {
     content = (
       <Content>
-        <Heading color="white" size="h2">
+        <Heading color="dark" size="h2">
           You have no todos!
         </Heading>
       </Content>
@@ -55,7 +55,7 @@ const Todos = ({ todos, requested, userId }) => {
   } else if (todos[userId].todos.length === 0) {
     content = (
       <Content>
-        <Heading color="white" size="h2">
+        <Heading color="dark" size="h2">
           You have no todos!
         </Heading>
       </Content>
@@ -77,10 +77,10 @@ const Todos = ({ todos, requested, userId }) => {
     <Wrapper>
       <Container>
         <InnerWrapper>
-          <Heading noMargin size="h1" color="white">
+          <Heading noMargin size="h1" color="dark">
             Your Todos
           </Heading>
-          <Heading bold size="h4" color="white">
+          <Heading bold size="h4" color="dark">
             All you have to do for now...
           </Heading>
           <Button color="main" contain onClick={() => setIsAdding(true)}>

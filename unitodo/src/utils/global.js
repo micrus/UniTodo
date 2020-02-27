@@ -23,6 +23,7 @@ export default createGlobalStyle`
     --color-mainLight: ${props => props.theme.colors.mainLight};
     --color-mainLighter: ${props => props.theme.colors.mainLighter};
     --color-text: ${props => props.theme.colors.textColor};
+    --color-background: ${props => props.theme.colors.background};
     --color-white: ${props => props.theme.colors.whiteColor};
     --color-errorRed: ${props => props.theme.colors.errorRed};
     --shadow: ${props => props.theme.colors.shadow};
