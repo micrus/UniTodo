@@ -13,6 +13,18 @@ import Modal from '../../../components/UI/Modal/Modal';
 
 import * as actions from '../../../store/actions';
 
+/* const Wrapper = styled.div`
+  width: 100%;
+  align-self: flex-start;
+  height: 100%;
+  min-height: calc(100vh - 6rem);
+  background-color: var(--color-mainLight);
+  padding: 3rem;
+`; */
+
+
+
+
 const MessageWrapper = styled.div`
   position: absolute;
   bottom: 2rem;
@@ -84,6 +96,7 @@ const Profile = ({
   if (!firebase.profile.isLoaded) return null;
   return (
     <>
+     {/* <Wrapper> */}
       <Formik
         initialValues={{
           firstName: firebase.profile.firstName,
@@ -189,6 +202,7 @@ const Profile = ({
           </Message>
         </MessageWrapper>
       </Modal>
+      {/* </Wrapper> */}
     </>
   );
 };

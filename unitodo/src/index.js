@@ -24,6 +24,14 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
+const ContentWrapper = styled.div`
+  width: 100%;
+  align-self: flex-start;
+  height: 100%;
+  min-height: calc(100vh - 6rem);
+  background-color: var(--color-mainLight);
+  padding: 3rem;`;
+
 
 function AuthIsLoaded({ children }) {
   const auth = useSelector(state => state.firebase.auth);
@@ -48,7 +56,10 @@ ReactDOM.render(
         <ThemeProvider theme={theme}>
           <>
             <GlobalStyles />
+            
+            <ContentWrapper>
             <App />
+            </ContentWrapper>
           </>
         </ThemeProvider>
       </AuthIsLoaded>

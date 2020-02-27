@@ -12,6 +12,15 @@ import Heading from "../../../components/UI/Headings/Heading";
 import Message from "../../../components/UI/Message/Message";
 import CustomLink from '../../../components/UI/CustomLink/CustomLink';
 
+/* const Wrapper = styled.div`
+  width: 100%;
+  align-self: flex-start;
+  height: 100%;
+  min-height: calc(100vh - 6rem);
+  background-color: var(--color-mainLight);
+  padding: 3rem;
+`;
+ */
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email.")
@@ -34,6 +43,7 @@ const Login = ({ loading, error, login, cleanUp }) => {
   }, [cleanUp]);
 
   return (
+ /*  <Wrapper> */
     <Formik
       initialValues={{
         email: "",
@@ -47,7 +57,7 @@ const Login = ({ loading, error, login, cleanUp }) => {
       {({ isSubmitting, isValid }) => (
         <FormWrapper>
           <Heading noMargin size="h1" color="white">
-            Login into your account
+            Login
           </Heading>
           <Heading bold size="h4" color="white">
             Fill in your details to login into your account
@@ -84,6 +94,7 @@ const Login = ({ loading, error, login, cleanUp }) => {
         </FormWrapper>
       )}
     </Formik>
+   /*  </Wrapper>  */
   );
 };
 

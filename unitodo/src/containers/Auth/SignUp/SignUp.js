@@ -19,6 +19,16 @@ const MessageWrapper = styled.div`
   bottom: 0;
 `;
 
+/* const Wrapper = styled.div`
+  width: 100%;
+  align-self: flex-start;
+  height: 100%;
+  min-height: calc(100vh - 6rem);
+  background-color: var(--color-mainLight);
+  padding: 3rem;
+`; */
+
+
 const SignUpSchema = Yup.object().shape({
   firstName: Yup.string()
     .required('Your first name is required.')
@@ -47,6 +57,7 @@ const SignUp = ({signUp, loading, error, cleanUp}) => {
   }, [cleanUp])
 
   return (
+/*   <Wrapper> */
     <Formik
       initialValues={{
         firstName: '',
@@ -112,6 +123,7 @@ const SignUp = ({signUp, loading, error, cleanUp}) => {
         </FormWrapper>
       )}
     </Formik>
+    /* </Wrapper> */
   );
 };
 
