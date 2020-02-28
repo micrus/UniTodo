@@ -1,10 +1,19 @@
 # UniTodo 
 
-![Icona dell'applicazione.](./unitodo.png)
-
-![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
-![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
-![forthebadge](https://forthebadge.com/images/badges/contains-cat-gifs.svg)
+<p align="center">
+  <img width="300" height="300" src="./unitodo.png">
+  <br>
+  <img src="https://forthebadge.com/images/badges/made-with-javascript.svg">
+  <img src="https://forthebadge.com/images/badges/built-with-love.svg">
+  <img src="https://forthebadge.com/images/badges/for-you.svg">
+  <br>
+  <br>
+  Sviluppato per il corso dell'Università di Camerino di Applicazioni Web e Mobile.
+  <br>
+  <a href="https://luca-fuligni.github.io/UniTodo"> •Sito Web• </a>
+  <br>
+  
+</p>
 
 ## Tabella dei contenuti
 1. [Introduzione](#introduzione)
@@ -82,19 +91,21 @@ service cloud.firestore {
 L'applicazione può essere liberamente accessibile all'URL [UniTodo](http://luca-fuligni.github.io/UniTodo).
 Nel caso si volesse testare localmente basterà lanciare i seguenti comandi:
 
-```git clone
 ```
-```cd unitodo
-```
-```npm install
-```
-```npm start
+git clone
+
+cd unitodo
+
+npm install
+
+npm start
 ```
 
 L'applicazione sarà poi raggiungibile all'indirizzo ```http://localhost:3000```, utilizzato da React come percorso di default.
 
 ## Autori
 [Luca Fuligni](https://github.com/luca-fuligni)
+
 [Michele Russo](https://github.com/micrus)
 
 
