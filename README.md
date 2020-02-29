@@ -8,6 +8,7 @@
   <img src="https://forthebadge.com/images/badges/for-you.svg">
   <br>
   <br>
+  Fork dell'applicazione UniTodo realizzato utilizzando come backend SpringBoot con H2 database.
   Sviluppato per il corso dell'Università di Camerino di Applicazioni Web e Mobile.
   <br>
   <a href="https://luca-fuligni.github.io/UniTodo"> •Sito Web• </a>
