@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -11,13 +12,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name="User")
 public class User {
-private UUID id;
+@Id
+private String id;
 private String firstName;
 private String lastName;
 @OneToMany(mappedBy="user")
 List<Todo> todos;
 
-public User(UUID id, String firstName, String lastName, List<Todo> todos) {
+public User(String id, String firstName, String lastName, List<Todo> todos) {
 	super();
 	this.id = id;
 	this.firstName = firstName;
@@ -29,11 +31,11 @@ public User() {
 	super();
 }
 
-public UUID getId() {
+public String getId() {
 	return id;
 }
 
-public void setId(UUID id) {
+public void setId(String id) {
 	this.id = id;
 }
 

@@ -24,7 +24,7 @@ public class TodoService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public Todo getUserTodo(UUID userUuid, long todoId) {
+	public Todo getUserTodo(String userUuid, long todoId) {
 		Optional<Todo> todo = todoRepository.findById(todoId);
 		Optional<User> user = userRepository.findById(userUuid);
 		
@@ -35,7 +35,7 @@ public class TodoService {
 		return todo.get();
 	}
 
-	public Todo editTodo(@Valid Todo todo, UUID userUuid, long todoId) {
+	public Todo editTodo(@Valid Todo todo, String userUuid, long todoId) {
 		Optional<Todo> oldTodo = todoRepository.findById(todoId);
 		Optional<User> user = userRepository.findById(userUuid);
 		

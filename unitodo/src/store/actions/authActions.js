@@ -1,13 +1,13 @@
 import * as actions from "./actionTypes";
-
+import axios from 'axios';
 //Signup actions...
 export const signUp = data => async (
   dispatch,
   getState,
-  { getFirebase, getFirestore }
+  { getFirebase}
 ) => {
   const firebase = getFirebase();
-  const firestore = getFirestore();
+ 
   dispatch({ type: actions.AUTH_START });
   try {
     const res = await firebase
@@ -16,21 +16,22 @@ export const signUp = data => async (
 
     var user = firebase.auth().currentUser;
     user.sendEmailVerification();
+    let userdetails = {id: res.user.uid,
+      firstName: data.firstName,
+      lastName: data.lastName};
 
-    await firestore
-      .collection("users")
-      .doc(res.user.uid)
-      .set({
-        firstName: data.firstName,
-        lastName: data.lastName
-      });
+
+    await axios.post(`http://localhost:8080/user`, userdetails);
+    
     dispatch({ type: actions.AUTH_SUCCESS });
-  } catch (err) {
-    dispatch({ type: actions.AUTH_FAIL, payload: err.message });
+  
+    }
+    catch(err) {
+      dispatch({ type: actions.AUTH_FAIL, payload: err.message });
+    };
   }
 
-  dispatch({ type: actions.AUTH_END });
-};
+
 
 //Logout actions...
 export const signOut = () => async (dispatch, getState, { getFirebase }) => {
